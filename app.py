@@ -1,10 +1,11 @@
+import eventlet
+eventlet.monkey_patch()
+
 import time
 import random
-import eventlet
 from flask import Flask, render_template, jsonify
 from flask_socketio import SocketIO
 
-eventlet.monkey_patch()
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "demo"
@@ -41,4 +42,4 @@ def http_poll():
 
 if __name__ == "__main__":
     socketio.start_background_task(background_data_generator)
-    socketio.run(app, host="192.168.1.2", port=5000)
+    socketio.run(app, host="127.0.0.1", port=5000)
